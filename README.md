@@ -1,2 +1,2 @@
-# Punto-de-Venta-JAC
-Punto de venta para sucursal Super Tienda La Primera
+# VacunaCheck-Repositorio
+Se encuentra el código sobre el proyecto llamado VacunaCheck.

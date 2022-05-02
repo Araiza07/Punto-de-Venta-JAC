@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel="icon" href="/images/Logotipo_png.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/html5-qrcode.min.js"></script>
+  </head>
+  <body>
+    {{> header}}
+    {{{body}}}
+    {{> footer}}
+    <script type="text/javascript">
+        function showData(){ 
+            document.getElementById('result').innerHTML = '<span class="result">'+qrCodeMessage+'</span>';
+            fetch('http://localhost:3000/code', {
+              headers: {
+                'Content-type': 'application/json'
+              },
+              method: 'POST',
+              body: JSON.stringify({ code: qrCodeMessage})
+              })
+              .then(function(response) {
+
+                // Transforma la respuesta. En este caso lo convierte a JSON
+                return response.json();
+                
+              })
+              .then(function(json) {
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: json.vacunado,
+                    showConfirmButton: false,
+                    timer: 1000
+                  });
+                console.log(json)
+              });
+        }
+        function onScanSuccess(qrCodeMessage) {
+          console.log("Entrando");
+            document.getElementById('result').innerHTML = '<span class="result">'+qrCodeMessage+'</span>';
+            fetch('http://localhost:3000/code', {
+              headers: {
+                'Content-type': 'application/json'
+              },
+              method: 'POST',
+              body: JSON.stringify({ code: qrCodeMessage})
+              })
+              .then(function(response) {
+                // Transforma la respuesta. En este caso lo convierte a JSON
+                return response.json();
+              })
+              .then(function(json) {
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: json.vacunado,
+                    showConfirmButton: false,
+                    timer: 1000
+                  });
+                console.log(json)
+              });
+
+        }
+
+        
+        function onScanError(errorMessage) {
+          //handle scan error
+        }
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+    
+
+
+  </body>
+</html>
