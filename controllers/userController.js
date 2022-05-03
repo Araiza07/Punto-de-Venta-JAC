@@ -1,4 +1,5 @@
-var User = require('../models/user');
+const Producto = require("../models/Producto");
+const User = require("../models/User");
 const { body,validationResult } = require('express-validator');
 
 
@@ -6,25 +7,10 @@ exports.user_login = function(req, res) {
     res.send('Despliega formulario login');
 };
 
-exports.user_register = [
-   
-    body('nombreE' ,'Campo requerido').trim().isLength().escape(),
-	body('ApePaterno','Campo requerido').trim().isLength().escape(),
-	body('ApeMaterno','Campo requerido').trim().isLength().escape(),
-	body('curp','Campo requerido').trim().isLength().escape(),
-	body('claveE','Campo requerido').trim().isLength().escape(),
-	body('email','Campo requerido').trim().isLength().escape(),
-	body('fechaN','Campo requerido').trim().isLength().escape(),
-	body('fechaIngreso','Campo requerido').isLength().trim().escape(),
-	body('rfc','Campo requerido').trim().isLength().escape(),
-	body('areaT','Campo requerido').trim().isLength().escape(),
-	body('puesto','Campo requerido').trim().isLength().escape(),
-	body('nomVacuna','Campo requerido').trim().isLength().escape(),
-	body('folio','Campo requerido').trim().isLength().escape(),
-
-    (req, res, next) => {
+exports.user_register = ((req, res, next) => {
         console.log('Ingresando a la validación');
         const errors = validationResult(req);
+        const data = req.body;
 
         if (!errors.isEmpty()) {
             let data = {
@@ -35,31 +21,19 @@ exports.user_register = [
             return;
         } else {
             console.log('Registrando Usuario');
-            let user = new User({
-                nombreE: req.body.nombreE,
-                apePaterno:req.body.apePaterno,
-                apeMaterno:req.body.apeMaterno,
-                curp:req.body.curp,
-                claveE:req.body.claveE,
-                email: req.body.email,
-                fechaN:req.body.fechaN,
-                fechaIngreso:req.body.fechaIngreso,
-                rfc:req.body.rfc,
-                areaT:req.body.areaT,
-                puesto:req.body.puesto,
-                nomVacuna:req.body.nomVacuna,
-                folio:req.body.folio
+            let producto = new Producto({
+                NombreP:data.NombreP,
+                Precio:data.PrecioProducto,
             });
 
-            user.save(function(error){
+            producto.save(function(error){
                 if (error) { return next(error); }
 
                 let data= {title: 'Ingresar Sistema', message:'Bienvenido ' + req.body.nombreE}
-                res.render('index', data);
+                res.redirect("/actualizar");
             });
         }
-    }
-];
+    });
 
 exports.user_logout = function(req, res) {
     req.session.destroy();
@@ -71,5 +45,93 @@ exports.user_logout = function(req, res) {
     res.render('login', data);   
 
 };
+
+exports.actuali_producto = ((req, res)=>{
+    Producto.find({},(err, result)=>{
+        if (err) {
+            console.log("A ocurrido un error");
+        } else {
+            
+  res.render('actualizar',{title: 'Actualizar Producto',productos:result});
+        }
+    });
+});
+
+exports.actualizaproducto = ((req, res)=>{
+    const params = req.params;
+    const id = params.id;
+    Producto.find({_id:id},(err, result)=>{
+        if (err) {
+            console.log("A ocurrido un error");    
+        } else {
+            res.render("actualizarproducto",{producto:result[0]});
+        }
+    });
+
+})
+
+exports.actualizarproductopost = ((req, res)=>{
+    const params = req.params;
+    const data = req.body;
+    const id = params.id;
+    Producto.updateOne({_id:id},{$set:{Precio:data.Precio,NombreP:data.NombreP}},(err, result)=>{
+        if (err) {
+            console.log("A ocurrido un error");
+        } else {
+            res.redirect("/actualizar");
+        }
+    });
+})
+
+exports.eliminarproducto = ((req, res)=>{
+    const params = req.params;
+    const id = params.id;
+    Producto.remove({_id:id},(err, result)=>{
+        if (err) {
+            console.log("A ocurrido un error");  
+        } else {
+            res.redirect("/actualizar");
+        }
+    });
+})
+
+exports.registraruser = ((req, res)=>{
+    const data = req.body;
+    let user = new User({
+        Usuario:data.Usuario,
+        Email:data.Email,
+        Password:data.Password,
+    });
+
+    user.save((err, result)=>{
+        if (err) {
+            console.log("A ocurrido un error");  
+        } else {
+            res.redirect("/");
+        }
+    });
+})
+
+
+exports.verificar = ((req, res)=>{
+    const data = req.body;
+    User.find({Usuario:data.Usuario},(err, result)=>{
+        if (err) {
+            console.log("A ocurrido un error");  
+        } else  if(result[0]){
+                if (data.Password == result[0].Password && data.Usuario == result[0].Usuario) {
+                    req.session.usuario = result[0].Usuario;
+                    res.redirect("/home");
+                } else {
+                    res.send("Usuario o contraseña incorrectas") 
+                }
+        }else{
+            res.send("Usuario no encontrado")
+        }
+    });
+
+    a = [1,23,4,]
+    a.lenght
+});
 
 

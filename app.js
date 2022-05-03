@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 var mongo = require('./config/conexionMongo');
 
 //Definicion de requerimiento para rutas
@@ -10,7 +12,25 @@ var indexRouter = require('./routes/index');
 
 
 var app = express();
-mongo();
+
+const MONGO_URL = "mongodb+srv://admin:loquesea123@cluster0.dsqht.mongodb.net/PuntoVentaJAC?retryWrites=true"
+
+app.use(session({
+  secret: "jessy",
+  resave: true,
+  saveUninitialized: true,
+  store: MongoStore.create({
+      // url para la connecion a mongodb
+      mongoUrl:MONGO_URL,
+  //  propiedad que si sucede algun problema con la connecion,
+  // esta tratara de volver a reconectar automaticamente 
+   autoReconnect: true,
+  //  crypto: {
+  //     secret: 'squirrel'
+  //   }
+  })
+}));
+
 // view engine setup 
 const hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views/partials', function (err) {});

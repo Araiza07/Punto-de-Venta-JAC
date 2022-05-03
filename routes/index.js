@@ -2,12 +2,28 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/userController');
 const controllerQR = require('../controllers/scannController');
-
-var User = require('../models/user');
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Punto de Venta JAC' });
+router.get('/home', function(req, res, next) {
+  res.render('index', { title: 'Punto de Venta JAC',usuario:req.session.usuario});
 });
+
+router.get("/salir",controller.user_logout);
+
+router.get('/', function(req, res, next) {
+  res.render('login', { title: 'Punto de Venta JAC', layout:false});
+});
+
+router.get('/registrarusuario', function(req, res, next) {
+  res.render('registrar', { title: 'Punto de Venta JAC', layout:false});
+});
+
+router.post('/registrarusuario', controller.registraruser);
+
+
+router.post("/verificar", controller.verificar);
+
+
+
 
 /* GET registro page.*/
 router.get('/crear', function(req, res){
@@ -20,9 +36,14 @@ router.get('/precio', function(req, res){
 })
 
 /* GET  actualizar page */
-router.get('/actualizar', function(req, res){
-  res.render('actualizar',{title: 'Actualizar Producto'});
-})
+router.get('/actualizar', controller.actuali_producto)
+
+router.get("/actualizar/:id",controller.actualizaproducto);
+  
+router.post("/actualizarproducto/:id", controller.actualizarproductopost);
+
+router.get("/eliminar/:id", controller.eliminarproducto);
+
 
 /* GET consulta page */
 router.get('/consulta', function(req, res){

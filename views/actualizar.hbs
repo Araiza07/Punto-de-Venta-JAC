@@ -1,12 +1,35 @@
+            
+            
             <div class="col">
                 <h1 id="htitle">Actualizacion de Productos</h1>
             </div>
         <br><br><br><br>
-            
-    <div class="col" id="colum">
-        <h3 id="hObjetivo">Aqui debe de ir la lista de productos </h3>
-        <button class="btn btn-primary">Actualizar</button>
-        <button class="btn btn-primary">Eliminar </button>
-        <button class="btn btn-primary"><a href="/" style="color: aliceblue;">Inicio</a></button>
+
+    <div>
+        <div style="overflow: auto; width: 35%; margin: 10px auto; height: 200px;">
+            <table style="padding: 20px;">
+                <tr style="padding: 29px;">
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
+                </tr>
+                  {{#each productos}}
+                <tr>
+                    <td style="padding: 20px;">{{NombreP}}</td>
+                    <td style="padding: 20px;">{{Precio}}</td>
+                    <td style="padding: 20px;"><a href="/actualizar/{{_id}}">Actualizar</a></td>
+                    <td style="padding: 20px;"><a href="/eliminar/{{_id}}">Eliminar</a></td>
+
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+                    <style>
+                th td{
+                    padding: 30px;
+                }
+            </style>
+        {{!-- <button class="btn btn-primary"><a href="/" style="color: aliceblue;">Inicio</a></button> --}}
     </div>
     <br><br><br> 

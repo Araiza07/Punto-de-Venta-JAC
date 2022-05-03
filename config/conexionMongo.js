@@ -1,9 +1,8 @@
-function connMongo() {
-    var mongoose = require('mongoose');
-    var mongoDB = 'mongodb+srv://VacunaCheck20:VacunaCheck2020@cluster0.p16wq.mongodb.net/vacuna_check?retryWrites=true&w=majority';
-    mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
-    var db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'Error de Conexion a MongoDB'));
-}
-
-module.exports = connMongo
+const mongoose = require("mongoose");
+const connection = mongoose.connect(`mongodb+srv://admin:loquesea123@cluster0.dsqht.mongodb.net/PuntoVentaJAC?retryWrites=true`)
+.then((db)=>{
+    console.log("Conexion exitosa a mongoDB");
+}).catch((err)=>{
+    console.log("Ah ocurrido un error: "+err.message);
+})
+module.exports = connection;
