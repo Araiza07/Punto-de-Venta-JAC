@@ -10,7 +10,7 @@ El ejemplo que nos dieron y en el que nos enfocaremos en este proyecto a trabaja
 A continuación, veremos la como es que será elaborado y en que va a consistir el proyecto que se trabajara a continuación.
 •	Lo primero que se tiene que hacer es plantar la idea de una manera clara que es lo que demostramos en la introducción del proyecto
 
-# Origrama del Proyecto 
+# Organigrama del Proyecto 
 # ![Origrama del Proyecto](https://user-images.githubusercontent.com/97042023/166410267-ba304ed4-0653-4b71-a3ac-b26fae64208c.png)
 # Objetivo del Proyecto 
 El objetivo que busca Punto de Venta JJAC es la facilidad de brindar la información necesaria en base a la lectura de un código QR, para el manejo de la información de una manera correcta, fácil y rápida.
