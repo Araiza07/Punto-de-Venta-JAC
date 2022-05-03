@@ -1,2 +1,2 @@
-# VacunaCheck-Repositorio
-Se encuentra el código sobre el proyecto llamado VacunaCheck.
+# Punto de Venta JAC-Repositorio
+Se encuentra el código sobre el proyecto Punto de Venta JAC.
