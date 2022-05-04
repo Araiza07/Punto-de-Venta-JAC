@@ -26,15 +26,18 @@ El objetivo que busca Punto de Venta JJAC es la facilidad de brindar la informac
 # ![RNF3](https://user-images.githubusercontent.com/97042023/166410855-4277966a-e4c4-4b63-ae04-c03142311557.png)
 
 # Caso de Uso 
-![Caso de Uso](https://user-images.githubusercontent.com/97042023/166412278-d98ab40d-b258-4c19-88c3-59ad974cf5d7.png)
+![Caso de Uso2](https://user-images.githubusercontent.com/97042023/166721488-ecb72716-7481-4d7e-9e30-b8563bd1180c.png)
 
 # Tecnologías por Utilizar 
 ----Node Js V16.13.2
 ----JavaScript 1.5
 -----Mongo Atlas----
 
-# Conclucion 
+# Herramientas a Utilizar
+-----Visual Studio Code----
+Mongo DB-----
+# Conclusion 
 En este proyecto se logró la implementación y la resolución de un problema que fue solicitado por el cliente.
-La menta lograda solo es el primer paso, ya que este proyecto, tiene el potencial, de expansión a una escala mucho mayor, sin duda alguna, con las modificaciones necesarias se puede utilizar en una infinidad de negocios. 
-Así mismo cambiarían los costos de producción, los tiempos de entrega y alguna que otra funcionalidad, de acuerdo con las necesidades que se tengan que lograr, las condiciones y limitaciones que ponga el cliente.
-Se considera un proyecto innovador por el hecho de que ayudo en la resolución de problemas de la vida diaria y tiene potencial para crecer y así lo ara. 
+La meta lograda solo es el primer paso, ya que este proyecto, tiene el potencial, de expansión a una escala mucho mayor, sin duda alguna, con las modificaciones necesarias se puede utilizar en una infinidad de negocios. 
+Así mismo tendría cambios en los costos de producción, los tiempos de entrega y alguna que otra funcionalidad, de acuerdo con las necesidades que se tengan que cubrir, las condiciones y limitaciones que ponga el cliente.
+Se considera un proyecto innovador por el hecho de que ayudo en la resolución de problemas de la vida diaria y tiene potencial para crecer y así lo hará.
