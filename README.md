@@ -34,8 +34,8 @@ El objetivo que busca Punto de Venta JJAC es la facilidad de brindar la informac
 -----Mongo Atlas----
 
 # Herramientas a Utilizar
------Visual Studio Code----
-Mongo DB-----
+-----Visual Studio Code
+-----Mongo DB
 # Conclusion 
 En este proyecto se logró la implementación y la resolución de un problema que fue solicitado por el cliente.
 La meta lograda solo es el primer paso, ya que este proyecto, tiene el potencial, de expansión a una escala mucho mayor, sin duda alguna, con las modificaciones necesarias se puede utilizar en una infinidad de negocios. 
