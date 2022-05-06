@@ -7,6 +7,8 @@ router.get('/home', function(req, res, next) {
   res.render('index', { title: 'Punto de Venta JAC',usuario:req.session.usuario});
 });
 
+
+
 router.get("/salir",controller.user_logout);
 
 router.get('/', function(req, res, next) {

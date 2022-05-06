@@ -38,9 +38,32 @@
                 console.log(json)
               });
         }
-        function onScanSuccess(qrCodeMessage) {
+         function onScanSuccess(qrCodeMessage) {
           console.log("Entrando");
-            document.getElementById('result').innerHTML = '<span class="result">'+qrCodeMessage+'</span>';
+          //********************************************************
+          const str = `${qrCodeMessage}`;
+
+          const primerdospuntos = str.indexOf(':');
+
+          const coma = str.indexOf(',');
+              const segundodospuntos = str.indexOf(':', (primerdospuntos + 1))
+              const cierre = str.indexOf('}');
+
+          const Producto = str.substr(primerdospuntos+1,coma-primerdospuntos-1);
+          const precio = parseInt(str.substr(segundodospuntos+1,cierre-segundodospuntos-1));
+
+          const input = document.createElement("input");
+          input.type = "text";
+          input.value = precio;
+          let p = document.createElement("p");
+          let pTexto = document.createTextNode(Producto);
+          p.appendChild(pTexto);
+
+          //input.disabled = true;
+
+
+
+            //innerHTML = '<span class="result">'+qrCodeMessage+"Hola"+'</span>';
             fetch('http://localhost:3000/code', {
               headers: {
                 'Content-type': 'application/json'
@@ -53,15 +76,62 @@
                 return response.json();
               })
               .then(function(json) {
-                  Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: json.vacunado,
-                    showConfirmButton: false,
-                    timer: 1000
-                  });
-                console.log(json)
-              });
+              if(precio != 0 ){
+                    let timerInterval
+                    Swal.fire({
+                      title: 'Procesando',
+                      html: 'I will close in <b></b> milliseconds.',
+                      timer: 1000,
+                      timerProgressBar: true,
+                      didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                          b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                      },
+                      willClose: () => {
+                        clearInterval(timerInterval)
+                      }
+                    }).then((result) => {
+                      /* Read more about handling dismissals below */
+                      if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer');
+                                  let totalp = parseInt(document.getElementById("total").value);
+                              totalp += precio;
+                                        //*******************************************************
+                              const contador =  document.getElementById('total');
+                              contador.value = totalp;
+                          document.getElementById('result').appendChild(p);
+                          document.getElementById('result').appendChild(input).disabled = true;
+                          document.getElementById("total").value = totalp;
+                      }
+                    })
+              }else{
+                    (async () => {
+
+                    const { value: precioproducto } = await Swal.fire({
+                      title: Producto,
+                      input: 'number',
+                      inputLabel: 'Ingrese su precio',
+                      inputPlaceholder: 'Precio',
+                    })
+
+                    if (precioproducto) {
+                     let totalp = parseInt(document.getElementById("total").value);
+                      totalp += parseInt(precioproducto);
+                      const contador =  document.getElementById('total');
+                      contador.value = totalp;
+                          document.getElementById('result').appendChild(p);
+                          input.value = precioproducto;
+                          document.getElementById('result').appendChild(input).disabled = true;
+                          document.getElementById("total").value = totalp;
+                    }
+
+                    })()
+              }
+
+              })
 
         }
 

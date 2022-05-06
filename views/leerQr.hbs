@@ -16,7 +16,22 @@
     <div style="width:500px;" id="reader"></div>
   </div>
   <div class="col" style="padding:30px;">
-    <h4>Producto</h4>
-    <div id="result">datos</div>
+    <input type="button" onclick="limpiar()" value="Nueva cuenta" />
+    <h4>Productos</h4>
+
+    <label for="">Total a pagar</label>
+    <input type="number" id="total" min="0" value="0">
+    
+    <div id="result"></div>
   </div>
 </div>
+<script languaje="javascript">
+  function limpiar(){
+            const contador =  document.getElementById('total');
+        contador.value = 0;
+          let element = document.getElementById("result");
+          while (element.firstChild) {
+              element.removeChild(element.firstChild);
+          }
+  }
+</script>

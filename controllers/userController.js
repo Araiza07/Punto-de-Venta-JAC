@@ -11,6 +11,8 @@ exports.user_register = ((req, res, next) => {
         console.log('Ingresando a la validación');
         const errors = validationResult(req);
         const data = req.body;
+          let  NombreP=data.NombreP;
+           let  Precio= data.PrecioProducto;
 
         if (!errors.isEmpty()) {
             let data = {
@@ -24,6 +26,7 @@ exports.user_register = ((req, res, next) => {
             let producto = new Producto({
                 NombreP:data.NombreP,
                 Precio:data.PrecioProducto,
+                QR:`https://api.qrserver.com/v1/create-qr-code/?size=200x200&format=imagen.png&data={Producto:${NombreP},Precio:${Precio}}`
             });
 
             producto.save(function(error){
@@ -71,10 +74,17 @@ exports.actualizaproducto = ((req, res)=>{
 })
 
 exports.actualizarproductopost = ((req, res)=>{
+    
     const params = req.params;
     const data = req.body;
     const id = params.id;
-    Producto.updateOne({_id:id},{$set:{Precio:data.Precio,NombreP:data.NombreP}},(err, result)=>{
+    let NombreP = data.NombreP;
+    let Precio = data.Precio;
+    Producto.updateOne({_id:id},{$set:{
+        Precio:data.Precio,
+        NombreP:data.NombreP,
+        QR:`https://api.qrserver.com/v1/create-qr-code/?size=200x200&format=imagen.png&data={Producto:${NombreP},Precio:${Precio}}`
+    }},(err, result)=>{
         if (err) {
             console.log("A ocurrido un error");
         } else {
