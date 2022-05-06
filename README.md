@@ -9,6 +9,10 @@ El ejemplo que nos dieron y en el que nos enfocaremos en este proyecto a trabaja
 # Descripcion del Proyecto 
 A continuación, veremos la como es que será elaborado y en que va a consistir el proyecto que se trabajara a continuación.
 •	Lo primero que se tiene que hacer es plantar la idea de una manera clara que es lo que demostramos en la introducción del proyecto
+# Diagrama de Gantt
+![Imagen1](https://user-images.githubusercontent.com/97042023/167148606-b00ee7f3-e7c9-4b0a-ab42-ee8965b60a56.png)
+![Imagen2](https://user-images.githubusercontent.com/97042023/167148625-4b225068-930f-4a1f-93b5-c690b8377808.png)
+![Imagen3](https://user-images.githubusercontent.com/97042023/167148637-105596ea-c314-4c42-8477-10925145f417.png)
 
 # Organigrama del Proyecto 
 # ![Origrama del Proyecto](https://user-images.githubusercontent.com/97042023/166410267-ba304ed4-0653-4b71-a3ac-b26fae64208c.png)
